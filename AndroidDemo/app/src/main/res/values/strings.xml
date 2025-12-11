@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android Demo</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="click_me">Click Me</string>
+    <string name="button_clicked">Button Clicked!</string>
+    <string name="counter_label">Counter: %d</string>
+</resources>

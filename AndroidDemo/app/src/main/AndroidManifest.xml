@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Network permission for Coil image loading -->
+    <!-- 网络权限，用于 Coil 加载网络图片 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AndroidDemo"
+        tools:targetApi="35">
+        
+        <!-- Compose Main Entry / Compose 主入口 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AndroidDemo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+
+        <!-- McLaren XML Gallery (Staggered Grid Demo) -->
+        <!-- 迈凯轮 XML 画廊（瀑布流演示） -->
+        <activity
+            android:name=".xml.McLarenXmlActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidDemo" />
+
+            
+    </application>
+
+</manifest>

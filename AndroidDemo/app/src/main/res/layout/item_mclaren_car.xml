@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    McLaren Car Item - XML Layout (Matching Compose Style)
+    迈凯轮卡片项 - XML 布局（匹配 Compose 风格）
+    
+    Used in RecyclerView for staggered grid display
+    
+    Key changes to match Compose:
+    1. scaleType="centerCrop" - 图片裁剪填满
+    2. Text overlays on image using ConstraintLayout bottom alignment
+    3. All text constrained to bottom of carImage, not parent
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#1E1E1E"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:strokeWidth="0dp"
+    app:strokeColor="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Car Image - 使用固定高度 + centerCrop，与 Compose 的 height + ContentScale.Crop 一致 -->
+        <ImageView
+            android:id="@+id/carImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <!-- Gradient Overlay - 渐变遮罩覆盖整个图片 -->
+        <View
+            android:id="@+id/gradientOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_overlay"
+            app:layout_constraintBottom_toBottomOf="@id/carImage"
+            app:layout_constraintTop_toTopOf="@id/carImage" />
+
+        <!-- Year Badge (Top Right) - 年份徽章（右上角） -->
+        <TextView
+            android:id="@+id/yearBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/badge_year_background"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2017" />
+
+        <!-- Featured Badge (Gold) - 精选徽章（叠加在图片上） -->
+        <TextView
+            android:id="@+id/featuredBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/badge_featured_background"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="1dp"
+            android:text="FEATURED"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/seriesBadge"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <!-- Series Badge (Orange) - 系列徽章（叠加在图片上） -->
+        <TextView
+            android:id="@+id/seriesBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/badge_background"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/carName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Super Series" />
+
+        <!-- Car Name - 叠加在图片底部 -->
+        <TextView
+            android:id="@+id/carName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/specsText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="McLaren 720S" />
+
+        <!-- Specs Text (HP • Acceleration • Top Speed) - 叠加在图片底部 -->
+        <TextView
+            android:id="@+id/specsText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="2dp"
+            android:textColor="#B0B0B0"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/carPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="710 HP • 2.9s • 341 km/h" />
+
+        <!-- Price (Orange) - 叠加在图片底部，约束到 carImage 底部 -->
+        <TextView
+            android:id="@+id/carPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="#FF6B00"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/carImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="$299K" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
